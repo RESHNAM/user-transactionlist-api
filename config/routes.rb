@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users do
     resources :transactions
+
   end
+
+  #get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
 end
