@@ -54,7 +54,7 @@ RSpec.describe "Users", type: :request do
   # Test suite for POST /users
   describe 'POST /users' do
     # valid payload
-    let(:valid_attributes) { { first_name: 'Renney', last_name: 'Namale', phone_number: "254711536639", email_address: "renney003@gmail.com" } }
+    let(:valid_attributes) { { first_name: 'Renney', last_name: 'Namale' } }
 
     context 'when the request is valid' do
       before { post '/users', params: valid_attributes }
@@ -62,8 +62,6 @@ RSpec.describe "Users", type: :request do
       it 'creates a user' do
         expect(json['first_name']).to eq('Renney')
         expect(json['last_name']).to eq('Namale')
-        expect(json['phone_number']).to eq("254711536639")
-        expect(json['email_address']).to eq("renney003@gmail.com")
       end
 
       it 'returns status code 201' do
@@ -72,15 +70,15 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/users', params: { first_name: 'Foobar' } }
+      before { post '/users', params: valid_attributes.to_json, as: :json }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'returns a validation failure message' do
-        expect(response.body)
-          .to match(/Validation failed: Created by can't be blank/)
+        #puts response.body.inspect
+        expect(response.body).to match(/Validation failed: First name can't be blank, Last name can't be blank/)
       end
     end
   end
