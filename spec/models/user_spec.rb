@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   # ensure Todo model has a 1:m relationship with the Item model
   it { should have_many(:transactions).dependent(:destroy) }
   # Validation tests
-  # ensure columns title and created_by are present before saving
-  it { should validate_presence_of(:phone_number) }
-  it { should validate_presence_of(:email_address) }
+  # ensure columns first_name and last_name are present before saving
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
 end
