@@ -7,24 +7,24 @@ class UsersController < ApplicationController
     json_response(@users)
   end
 
-  # POST /user
+  # POST /users
   def create
     @user = User.create!(user_params)
     json_response(@user, :created)
   end
 
-  # GET /user/:id
+  # GET /users/:id
   def show
     json_response(@user)
   end
 
-  # PUT /user/:id
+  # PUT /users/:id
   def update
     @user.update(user_params)
     head :no_content
   end
 
-  # DELETE /user/:id
+  # DELETE /users/:id
   def destroy
     @user.destroy
     head :no_content
@@ -40,4 +40,19 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
+  #respond_to :json
+
+  # swagger_controller :users, 'Users'
+
+  # swagger_api :index do
+  #   summary 'Returns all users'
+  #   notes 'Notes...'
+  # end
+
+  # def index
+  #   @users = User.all
+
+  #   render json: @users, status: :ok
+  # end
 end
