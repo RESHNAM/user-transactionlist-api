@@ -1,8 +1,8 @@
 FactoryBot.define do
     factory :transaction do
-      credit { Faker::StarWars.character }
-      dedit { Faker::StarWars.character }
-      done false
-      reference nil
+      credit { Faker::Number.decimal(l_digits: 2) }
+      debit { Faker::Number.decimal(l_digits: 2) }
+      total { Faker::Number.decimal(l_digits: 2) }
+      user_id nil
     end
   end
