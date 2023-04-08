@@ -30,3 +30,7 @@
 
 ## Ignore Swagger JSON files.
 /public/apidocs/
+
+## Ignore Gemfile and Gemfile.lock
+/Gemfile
+/Gemfile.lock
