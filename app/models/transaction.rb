@@ -4,4 +4,5 @@ class Transaction < ApplicationRecord
 
   # validation
   validates_presence_of :total
+
 end

@@ -68,6 +68,19 @@ RSpec.describe 'Transactions API' do
     context 'when request attributes are valid' do
       before { post "/users/#{user_id}/transactions", params: valid_attributes }
 
+      it 'example at' do
+        #puts valid_attributes[:credit]
+        #puts :credit
+        :total == valid_attributes[:total] + valid_attributes[:credit]
+      end
+
+      it 'example at' do
+        #puts valid_attributes[:debit]
+        #puts :debit
+        :total == valid_attributes[:total] - valid_attributes[:debit]
+      end
+
+
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
       end
@@ -76,8 +89,10 @@ RSpec.describe 'Transactions API' do
     context 'when an invalid request' do
       before { post "/users/#{user_id}/transactions", params: {} }
 
+
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
+
       end
 
       it 'returns a failure message' do

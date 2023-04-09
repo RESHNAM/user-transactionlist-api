@@ -15,6 +15,13 @@ class TransactionsController < ApplicationController
     # POST /users/:user_id/transactions
     def create
         @user.transactions.create!(transaction_params)
+        puts transaction_params['total']
+        if transaction_params['credit']
+            transaction_params['total'] = transaction_params['total'] + transaction_params['credit']
+        elsif transaction_params['debit']
+            transaction_params['total'] = transaction_params['total'] - transaction_params['debit']
+        end 
+
         json_response(@user, :created)
     end
     
@@ -34,6 +41,10 @@ class TransactionsController < ApplicationController
     
     def transaction_params
         params.permit(:credit, :debit, :total, :user_id)
+    end
+
+    def individual_transaction_params
+        params.permit(:credit, :debit, :total)
     end
     
     def set_user
