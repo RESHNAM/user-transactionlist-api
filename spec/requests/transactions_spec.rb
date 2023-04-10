@@ -1,4 +1,5 @@
 require 'rails_helper'
+#require 'swagger_helper'
 
 RSpec.describe 'Transactions API' do
   # Initialize the test data
@@ -9,6 +10,7 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for GET /users/:user_id/transactions
   describe 'GET /users/:user_id/transactions' do
+  #path 'GET /users/:user_id/transactions' do
     before { get "/users/#{user_id}/transactions" }
 
     context 'when user exists' do
@@ -36,6 +38,7 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for GET /users/:user_id/transactions/:id
   describe 'GET /users/:user_id/transactions/:id' do
+  #path 'GET /users/:user_id/transactions/:id' do
     before { get "/users/#{user_id}/transactions/#{id}" }
 
     context 'when user transaction exists' do
@@ -63,6 +66,7 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for PUT /users/:user_id/transactions
   describe 'POST /users/:user_id/transactions' do
+  #path 'POST /users/:user_id/transactions' do
     let(:valid_attributes) { { credit: 10, debit: 0, total: 0, user_id: 'Visit Narnia', done: false } }
 
     context 'when request attributes are valid' do
@@ -103,6 +107,7 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for PUT /users/:user_id/transactions/:id
   describe 'PUT /users/:user_id/transactions/:id' do
+  #path 'PUT /users/:user_id/transactions/:id' do
     let(:valid_attributes) { { user_id: 'Mozart' } }
 
     before { put "/users/#{user_id}/transactions/#{id}", params: valid_attributes }
@@ -136,6 +141,7 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for DELETE /users/:id
   describe 'DELETE /users/:id' do
+  #path 'DELETE /users/:id' do
     before { delete "/users/#{user_id}/transactions/#{id}" }
 
     it 'returns status code 204' do

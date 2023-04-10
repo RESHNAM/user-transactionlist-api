@@ -16,11 +16,16 @@ class TransactionsController < ApplicationController
     def create
         @user.transactions.create!(transaction_params)
         puts transaction_params['total']
+
         if transaction_params['credit']
-            transaction_params['total'] = transaction_params['total'] + transaction_params['credit']
+            @user.transactions.update(:total = transaction_params['total'] + transaction_params['credit']) 
         elsif transaction_params['debit']
-            transaction_params['total'] = transaction_params['total'] - transaction_params['debit']
+            @user.transactions.update(:total = transaction_params['total'] - transaction_params['debit'])
+        else
+            def another_method
+            end
         end 
+
 
         json_response(@user, :created)
     end

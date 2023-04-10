@@ -7,6 +7,7 @@ RSpec.describe "Users", type: :request do
 
   # Test Suite for GET /users
   describe "GET /users" do
+  #path "GET /users" do
     #pending "add some examples (or delete) #{__FILE__}"
 
     # make HTTP get request before each example
@@ -25,6 +26,7 @@ RSpec.describe "Users", type: :request do
 
   # Test suite for GET /users/:id
   describe 'GET /users/:id' do
+  #path 'GET /users/:id' do
     before { get "/users/#{user_id}" }
 
     context 'when the record exists' do
@@ -53,6 +55,7 @@ RSpec.describe "Users", type: :request do
 
   # Test suite for POST /users
   describe 'POST /users' do
+  #path 'POST /users' do
     # valid payload
     let(:valid_attributes) { { first_name: 'Renney', last_name: 'Namale' } }
 
@@ -85,6 +88,7 @@ RSpec.describe "Users", type: :request do
 
   # Test suite for PUT /users/:id
   describe 'PUT /users/:id' do
+  #path 'PUT /users/:id' do
     let(:valid_attributes) { { first_name: 'Renney' } }
 
     context 'when the record exists' do
@@ -102,6 +106,7 @@ RSpec.describe "Users", type: :request do
 
   # Test suite for DELETE /users/:id
   describe 'DELETE /users/:id' do
+  #path 'DELETE /users/:id' do
     before { delete "/users/#{user_id}" }
 
     it 'returns status code 204' do
