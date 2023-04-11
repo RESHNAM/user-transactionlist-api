@@ -17,17 +17,17 @@ class TransactionsController < ApplicationController
         @user.transactions.create!(transaction_params)
         
 
-        #puts transaction_params['total']
-        total_credit = transaction_params['total'].to_i + transaction_params['credit'].to_i
-        total_debit = transaction_params['total'].to_i - transaction_params['debit'].to_i 
+        # #puts transaction_params['total']
+        # total_credit = transaction_params['total'].to_i + transaction_params['credit'].to_i
+        # total_debit = transaction_params['total'].to_i - transaction_params['debit'].to_i 
 
-        #puts :total
-        if transaction_params['credit']
-            @transaction.update(total: total_credit)
+        # #puts :total
+        # if transaction_params['credit']
+        #     @transaction.update(total: total_credit)
 
-        elsif transaction_params['debit']
-            @transaction.update[total: total_debit]
-        end
+        # elsif transaction_params['debit']
+        #     @transaction.update[total: total_debit]
+        # end
         
         json_response(@user, :created)
     end
