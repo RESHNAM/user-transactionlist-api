@@ -42,7 +42,7 @@ gem 'swagger-docs'
 gem 'rswag'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.13'
+gem 'bcrypt', '~> 3.1.18'
 
 gem 'jwt'
 

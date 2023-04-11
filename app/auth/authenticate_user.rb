@@ -16,7 +16,9 @@ class AuthenticateUser
     # verify user credentials
     def app_user
       app_user = AppUser.find_by(email: email)
-      return app_user if app_user && app_user.authenticate(password)
+      #return app_user if app_user && app_user.authenticate(password)
+      return app_user if app_user && app_user.password_digest()
+      
       # raise Authentication error if credentials are invalid
       raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
     end
