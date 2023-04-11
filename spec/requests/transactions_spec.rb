@@ -1,5 +1,4 @@
 require 'rails_helper'
-#require 'swagger_helper'
 
 RSpec.describe 'Transactions API' do
   # Initialize the test data
@@ -10,7 +9,6 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for GET /users/:user_id/transactions
   describe 'GET /users/:user_id/transactions' do
-  #path 'GET /users/:user_id/transactions' do
     before { get "/users/#{user_id}/transactions" }
 
     context 'when user exists' do
@@ -38,7 +36,6 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for GET /users/:user_id/transactions/:id
   describe 'GET /users/:user_id/transactions/:id' do
-  #path 'GET /users/:user_id/transactions/:id' do
     before { get "/users/#{user_id}/transactions/#{id}" }
 
     context 'when user transaction exists' do
@@ -66,26 +63,28 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for PUT /users/:user_id/transactions
   describe 'POST /users/:user_id/transactions' do
-  #path 'POST /users/:user_id/transactions' do
-    let(:valid_attributes) { { credit: 10, debit: 0, total: 0, user_id: 'Visit Narnia', done: false } }
+    let(:valid_attributes) { { credit: 10, debit: 0, total: 10, user_id: 'Visit Narnia', done: false } }
 
     context 'when request attributes are valid' do
       before { post "/users/#{user_id}/transactions", params: valid_attributes }
 
       it 'example at' do
-        #puts valid_attributes[:credit]
+        #puts valid_attributes[:credit].to_i
         #puts :credit
-        :total == valid_attributes[:total] + valid_attributes[:credit]
+        :total == valid_attributes[:total].to_i + valid_attributes[:credit].to_i
       end
 
       it 'example at' do
         #puts valid_attributes[:debit]
         #puts :debit
-        :total == valid_attributes[:total] - valid_attributes[:debit]
+        :total == valid_attributes[:total].to_i - valid_attributes[:debit].to_i
       end
 
 
       it 'returns status code 201' do
+        puts valid_attributes
+        puts response.inspect
+        puts response.body
         expect(response).to have_http_status(201)
       end
     end
@@ -107,7 +106,6 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for PUT /users/:user_id/transactions/:id
   describe 'PUT /users/:user_id/transactions/:id' do
-  #path 'PUT /users/:user_id/transactions/:id' do
     let(:valid_attributes) { { user_id: 'Mozart' } }
 
     before { put "/users/#{user_id}/transactions/#{id}", params: valid_attributes }
@@ -141,11 +139,33 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for DELETE /users/:id
   describe 'DELETE /users/:id' do
-  #path 'DELETE /users/:id' do
     before { delete "/users/#{user_id}/transactions/#{id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end
   end
+
+  # # Test suite for GET /transactions/:id
+  # describe 'GET /transactions/:id' do
+  #   before { get "/transactions/#{id}" }
+
+  #   context 'when transaction exists' do
+  #     it 'returns status code 200' do
+  #       expect(response).to have_http_status(200)
+  #     end
+  #   end
+
+  #   context 'when transaction does not exist' do
+  #     let(:id) { 0 }
+
+  #     it 'returns status code 404' do
+  #       expect(response).to have_http_status(404)
+  #     end
+
+  #     it 'returns a not found message' do
+  #       expect(response.body).to match(/Couldn't find Transaction with 'id'=total/)
+  #     end
+  #   end
+  # end
 end
