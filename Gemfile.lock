@@ -102,6 +102,7 @@ GEM
       reline (>= 0.3.0)
     json-schema (3.0.0)
       addressable (>= 2.8)
+    jwt (2.7.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -213,12 +214,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1.13)
   bootsnap
   database_cleaner
   debug
   factory_bot_rails (~> 4.0)
   faker
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
