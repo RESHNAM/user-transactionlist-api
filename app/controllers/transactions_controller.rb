@@ -11,29 +11,25 @@ class TransactionsController < ApplicationController
     def show
         json_response(@transaction)
     end
-
-    # # GET /transactions/:id
-    # def show
-    #     json_response(@transaction)
-    # end
     
     # POST /users/:user_id/transactions
     def create
         @user.transactions.create!(transaction_params)
-        json_response(@user, :created)
+        
 
         #puts transaction_params['total']
         total_credit = transaction_params['total'].to_i + transaction_params['credit'].to_i
         total_debit = transaction_params['total'].to_i - transaction_params['debit'].to_i 
 
+        #puts :total
         if transaction_params['credit']
-            @user.transactions.update(:total, total_credit) 
+            @transaction.update(total: total_credit)
+
         elsif transaction_params['debit']
-            @user.transactions.update(:total, total_debit)
-        else
-            def another_method
-            end
-        end  
+            @transaction.update[total: total_debit]
+        end
+        
+        json_response(@user, :created)
     end
     
     # PUT /users/:user_id/transactions/:id

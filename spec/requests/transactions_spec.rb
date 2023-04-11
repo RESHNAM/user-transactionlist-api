@@ -82,9 +82,6 @@ RSpec.describe 'Transactions API' do
 
 
       it 'returns status code 201' do
-        puts valid_attributes
-        puts response.inspect
-        puts response.body
         expect(response).to have_http_status(201)
       end
     end
