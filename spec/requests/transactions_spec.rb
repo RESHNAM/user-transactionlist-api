@@ -2,14 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Transactions API' do
   # Initialize the test data
+  let!(:app_user) { create(:app_user) }
   let!(:user) { create(:user) }
   let!(:transactions) { create_list(:transaction, 20, user_id: user.id) }
   let(:user_id) { user.id }
   let(:id) { transactions.first.id }
+  let(:headers) { valid_headers }
 
   # Test suite for GET /users/:user_id/transactions
   describe 'GET /users/:user_id/transactions' do
-    before { get "/users/#{user_id}/transactions" }
+    before { get "/users/#{user_id}/transactions", params: {}, headers: headers }
 
     context 'when user exists' do
       it 'returns status code 200' do
@@ -36,7 +38,7 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for GET /users/:user_id/transactions/:id
   describe 'GET /users/:user_id/transactions/:id' do
-    before { get "/users/#{user_id}/transactions/#{id}" }
+    before { get "/users/#{user_id}/transactions/#{id}", params: {}, headers: headers }
 
     context 'when user transaction exists' do
       it 'returns status code 200' do
@@ -66,7 +68,7 @@ RSpec.describe 'Transactions API' do
     let(:valid_attributes) { { credit: 10, debit: 0, total: 10, user_id: 'Visit Narnia', done: false } }
 
     context 'when request attributes are valid' do
-      before { post "/users/#{user_id}/transactions", params: valid_attributes }
+      before { post "/users/#{user_id}/transactions", params: valid_attributes, headers: headers }
 
       it 'example at' do
         #puts valid_attributes[:credit].to_i
@@ -87,7 +89,7 @@ RSpec.describe 'Transactions API' do
     end
 
     context 'when an invalid request' do
-      before { post "/users/#{user_id}/transactions", params: {} }
+      before { post "/users/#{user_id}/transactions", params: {}, headers: headers }
 
 
       it 'returns status code 422' do
@@ -105,7 +107,7 @@ RSpec.describe 'Transactions API' do
   describe 'PUT /users/:user_id/transactions/:id' do
     let(:valid_attributes) { { user_id: 'Mozart' } }
 
-    before { put "/users/#{user_id}/transactions/#{id}", params: valid_attributes }
+    before { put "/users/#{user_id}/transactions/#{id}", params: valid_attributes, headers: headers }
 
     context 'when transaction exists' do
       it 'returns status code 204' do
@@ -136,33 +138,10 @@ RSpec.describe 'Transactions API' do
 
   # Test suite for DELETE /users/:id
   describe 'DELETE /users/:id' do
-    before { delete "/users/#{user_id}/transactions/#{id}" }
+    before { delete "/users/#{user_id}/transactions/#{id}", params: {}, headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end
   end
-
-  # # Test suite for GET /transactions/:id
-  # describe 'GET /transactions/:id' do
-  #   before { get "/transactions/#{id}" }
-
-  #   context 'when transaction exists' do
-  #     it 'returns status code 200' do
-  #       expect(response).to have_http_status(200)
-  #     end
-  #   end
-
-  #   context 'when transaction does not exist' do
-  #     let(:id) { 0 }
-
-  #     it 'returns status code 404' do
-  #       expect(response).to have_http_status(404)
-  #     end
-
-  #     it 'returns a not found message' do
-  #       expect(response.body).to match(/Couldn't find Transaction with 'id'=total/)
-  #     end
-  #   end
-  # end
 end
