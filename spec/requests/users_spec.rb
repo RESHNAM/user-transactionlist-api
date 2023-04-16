@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users API", type: :request do
   # initialize test data
   let(:app_user) { create(:app_user)}
-  let!(:users) { create_list(:user, 10, created_by: app_user.id) }
+  let!(:users) { create_list(:user, 10, app_user_id: app_user.id) }
   let(:user_id) { users.first.id }
   # authorize request
   let(:headers) { valid_headers }

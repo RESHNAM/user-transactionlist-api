@@ -4,7 +4,7 @@ RSpec.describe 'Application Users API', type: :request do
   let(:app_user) { build(:app_user) }
   let(:headers) { valid_headers.except('Authorization') }
   let(:valid_attributes) do
-    attributes_for(:app_user, password_confirmation: app_user.password)
+    attributes_for(:app_user, password_confirmation: app_user.password_digest)
   end
 
   # User signup test suite
@@ -13,6 +13,7 @@ RSpec.describe 'Application Users API', type: :request do
       before { post '/signup', params: valid_attributes.to_json, headers: headers }
 
       it 'creates a new user' do
+        puts response.inspect
         expect(response).to have_http_status(201)
       end
 

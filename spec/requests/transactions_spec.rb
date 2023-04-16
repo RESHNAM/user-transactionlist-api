@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Transactions API' do
   # Initialize the test data
   let!(:app_user) { create(:app_user) }
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, app_user_id: app_user.id) }
   let!(:transactions) { create_list(:transaction, 20, user_id: user.id) }
   let(:user_id) { user.id }
   let(:id) { transactions.first.id }

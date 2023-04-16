@@ -5,7 +5,7 @@ class AppUsersController < ApplicationController
     # return authenticated token upon signup
     def create
         app_user = AppUser.create!(app_user_params)
-        auth_token = AuthenticateUser.new(app_user.email, app_user.password).call
+        auth_token = AuthenticateUser.new(app_user.email_address, app_user.password_digest).call
         response = { message: Message.account_created, auth_token: auth_token }
         json_response(response, :created)
     end
@@ -15,7 +15,7 @@ class AppUsersController < ApplicationController
     def app_user_params
         params.permit(
         :name,
-        :email,
+        :email_address,
         :password,
         :password_confirmation
         )

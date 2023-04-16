@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_102156) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_110912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "app_users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "email_address"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,9 +39,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_102156) do
     t.string "email_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "created_by", null: false
+    t.integer "app_user_id", null: false
   end
 
   add_foreign_key "transactions", "users"
-  add_foreign_key "users", "app_users", column: "created_by"
+  add_foreign_key "users", "app_users"
 end
