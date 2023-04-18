@@ -58,7 +58,7 @@ RSpec.describe "Users API", type: :request do
     let(:valid_attributes) do
 
       # send json payload
-      { first_name: 'Renney', last_name: 'Namale', created_by: app_user.id.to_s }.to_json
+      { first_name: 'Renney', last_name: 'Namale', app_user_id: app_user.id.to_s }.to_json
     end
 
 

@@ -8,5 +8,5 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name
   validates :email_address, uniqueness: true
   validates :phone_number, uniqueness: true
-  validates_format_of :email, with: /@/
+  validates_format_of :email_address, with: /@/
 end
