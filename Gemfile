@@ -49,6 +49,9 @@ gem 'jwt'
 # Define and serve live-updating Swagger JSON for Ruby apps.
 gem 'swagger-blocks', '~> 3.0'
 
+# Rails engine to introduce OAuth 2 provider functionality
+gem 'doorkeeper', '~> 5.4'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
