@@ -1,30 +1,30 @@
 # frozen_string_literal: true
 
-class Swagger::Controllers::AppUsersController
+class Swagger::Controllers::UsersController
     include Swagger::Blocks
   
-    swagger_path '/signup' do
+    swagger_path '/users' do
         operation :post do
-            key :description, 'Creates a new application user in the system'
+            key :description, 'Creates a new client in the system'
             key :tags, [
-                'app_user'
+                'user'
             ]
   
             parameter do
-                key :name, :email_address
+                key :first_name, :phone_number
                 key :in, :body
-                key :description, 'Email and password information of the new user'
+                key :description, 'First Name, Last Name, Email and Phone number information of the new client'
                 key :required, true
                 schema do
-                    key :'$ref', :AppUserInput
+                    key :'$ref', :UserInput
                 end
             end
 
             response 201 do
-                key :description, 'User created'
+                key :description, 'Client created'
                 schema do
                     property :data do
-                        key :'$ref', :AppUser
+                        key :'$ref', :User
                     end
         
                     property :meta do
