@@ -5,15 +5,15 @@ class Swagger::Controllers::AppUsersController
   
     swagger_path '/signup' do
         operation :post do
-            key :description, 'Creates a new application user in the system'
+            key :description, 'Creates a new api user in the system'
             key :tags, [
-                'app_user'
+                'Api User'
             ]
   
             parameter do
                 key :name, :email_address
                 key :in, :body
-                key :description, 'Email and password information of the new user'
+                key :description, 'Email and password information of the new api user'
                 key :required, true
                 schema do
                     key :'$ref', :AppUserInput
@@ -21,7 +21,7 @@ class Swagger::Controllers::AppUsersController
             end
 
             response 201 do
-                key :description, 'User created'
+                key :description, 'API User created'
                 schema do
                     property :data do
                         key :'$ref', :AppUser

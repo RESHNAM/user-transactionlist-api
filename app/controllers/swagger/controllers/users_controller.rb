@@ -7,7 +7,7 @@ class Swagger::Controllers::UsersController
         operation :post do
             key :description, 'Creates a new client in the system'
             key :tags, [
-                'user'
+                'Client'
             ]
   
             parameter do
