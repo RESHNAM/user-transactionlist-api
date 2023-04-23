@@ -11,7 +11,6 @@ class Swagger::Controllers::OauthController
             ]
   
             parameter do
-                #key :name, :user_credentials
                 key :name, :email_address
                 key :in, :body
                 key :description, 'Email and password information of the new  application user with grant type.'

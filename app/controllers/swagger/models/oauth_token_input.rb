@@ -7,11 +7,11 @@ module Swagger::Models::OauthTokenInput
         key :type, :object
         key :required, %i[email_address password_digest grant_type]
     
-        property :email do
+        property :email_address do
             key :type, :string
         end
     
-        property :password do
+        property :password_digest do
             key :type, :string
         end
     
