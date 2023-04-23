@@ -7,7 +7,7 @@ class Swagger::Controllers::OauthController
         operation :post do
             key :description, 'Creates a new token from application user credentials'
             key :tags, [
-                'oauth'
+                'OAuth'
             ]
   
             parameter do
