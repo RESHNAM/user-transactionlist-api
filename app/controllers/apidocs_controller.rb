@@ -21,6 +21,7 @@ class ApidocsController < ActionController::Base
       key :consumes, ['application/json']
       key :produces, ['application/json']
       key :schemes,  ['http']
+      
     end
   
     # A list of all classes that have swagger_* declarations.

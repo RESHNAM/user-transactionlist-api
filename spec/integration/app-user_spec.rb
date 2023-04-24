@@ -15,7 +15,7 @@ describe 'Application User Transaction List API' do
                 required: [ 'name', 'email_address', 'password_digest' ]
             }
 
-            response '201', 'pet created' do
+            response '201', 'App user created' do
                 let(:app_user) { { name: 'Dodo', email_address: 'available@gmail.com', password_adigest: 'pass!123' } }
                 run_test!
             end

@@ -40,5 +40,40 @@ class Swagger::Controllers::UsersController
                 end
             end
         end
+
+        operation :get do
+            key :description, 'Retrieve all the clients in the system'
+            key :tags, [
+                'Client'
+            ]
+  
+            parameter do
+                key :in, :body
+                key :description, 'First Name Last Name Email and Phone number information of all the clients'
+                schema do
+                    key :'$ref', :UserAllInput
+                end
+            end
+
+            response 201 do
+                key :description, 'Clients Retrieved Successfully'
+                schema do
+                    property :data do
+                        key :'$ref', :User
+                    end
+        
+                    property :meta do
+                        key :'$ref', :Meta
+                    end
+                end
+            end
+
+            response 422 do
+                key :description, 'Unprocessable Entity'
+                schema do
+                    key :'$ref', :Error
+                end
+            end
+        end
     end
 end
