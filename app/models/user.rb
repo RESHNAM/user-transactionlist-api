@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     # model association
     #has_many :transactions, foreign_key: :created_by, dependent: :destroy
-    has_many :transactions, foreign_key: :app_user_id
+    has_many :transactions, foreign_key: :app_user_id, dependent: :destroy
     belongs_to :app_user
 
   # validations
